@@ -1,0 +1,7 @@
+/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles/io_uring_server.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles/edit_cache.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles/rebuild_cache.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles/list_install_components.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles/install.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles/install/local.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles/install/strip.dir

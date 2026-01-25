@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/rui/share/warehouse/1精匠/webserver/io_uring/build",
+  "command": "/usr/bin/c++  -I/home/rui/share/warehouse/1精匠/webserver/io_uring/include -Wall -Wextra -Wpedantic -g -O0 -std=c++14 -o CMakeFiles/io_uring_server.dir/src/main.cpp.o -c /home/rui/share/warehouse/1精匠/webserver/io_uring/src/main.cpp",
+  "file": "/home/rui/share/warehouse/1精匠/webserver/io_uring/src/main.cpp"
+}
+]

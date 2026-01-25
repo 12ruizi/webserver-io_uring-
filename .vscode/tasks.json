@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cmake",
+			"label": "CMake: 生成",
+			"command": "build",
+			"targets": [
+				"io_uring"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"detail": "CMake 模板 生成 任务"
+		},
+		{
+			"type": "cmake",
+			"label": "CMake: 配置",
+			"command": "configure",
+			"problemMatcher": [],
+			"detail": "CMake 模板 配置 任务",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

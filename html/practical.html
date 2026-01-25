@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /* 改变盒子模型, 让宽度和高度包含内边距和边框 */
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        .box {
+
+            width: 300px;
+            height: 300px;
+            /* 行高是指行与行之间的间距 行高等于盒子高度是让文本处于盒子垂直居中 */
+            /* line-height: 300px; */
+            background-color: red;
+            margin: 0 auto;
+
+        }
+
+        .item {
+            display: flex;
+            /* 让盒子内部的元素水平居中 */
+            justify-content: center;
+            /* 让盒子内部的元素垂直居中 */
+            align-items: center;
+            width: 100px;
+            height: 200px;
+
+            font-size: 30px;
+
+            /* 列表项之间的间距 */
+            margin: 0 auto;
+
+
+            background-color: blue;
+        }
+
+        .item ul li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            margin: 50px 0;
+        }
+
+        .item ul li {
+            color: #fff;
+            margin: 100px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        lllll
+        <div class="item">
+            <h2>123</h2>
+            <ul>
+                <li><a href="#">123</a></li>
+                <li>123</li>
+                <li>123</li>
+
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

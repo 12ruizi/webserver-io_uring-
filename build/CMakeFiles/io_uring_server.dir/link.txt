@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/io_uring_server.dir/src/main.cpp.o -o io_uring_server  -lpthread -luring -lstdc++fs 
