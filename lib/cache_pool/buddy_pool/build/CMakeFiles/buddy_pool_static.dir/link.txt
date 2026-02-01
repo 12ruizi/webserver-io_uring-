@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbuddy_pool_static.a CMakeFiles/buddy_pool_obj.dir/buddy_pool.cpp.o
+/usr/bin/ranlib libbuddy_pool_static.a

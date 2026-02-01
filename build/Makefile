@@ -162,6 +162,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named cache_pool
+
+# Build rule for target.
+cache_pool: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cache_pool
+.PHONY : cache_pool
+
+# fast build rule for target.
+cache_pool/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cache_pool.dir/build.make CMakeFiles/cache_pool.dir/build
+.PHONY : cache_pool/fast
+
+#=============================================================================
 # Target rules for targets named io_uring_server
 
 # Build rule for target.
@@ -173,6 +186,54 @@ io_uring_server: cmake_check_build_system
 io_uring_server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/build
 .PHONY : io_uring_server/fast
+
+lib/cache_pool/buddy_pool/buddy_pool.o: lib/cache_pool/buddy_pool/buddy_pool.cpp.o
+.PHONY : lib/cache_pool/buddy_pool/buddy_pool.o
+
+# target to build an object file
+lib/cache_pool/buddy_pool/buddy_pool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cache_pool.dir/build.make CMakeFiles/cache_pool.dir/lib/cache_pool/buddy_pool/buddy_pool.cpp.o
+.PHONY : lib/cache_pool/buddy_pool/buddy_pool.cpp.o
+
+lib/cache_pool/buddy_pool/buddy_pool.i: lib/cache_pool/buddy_pool/buddy_pool.cpp.i
+.PHONY : lib/cache_pool/buddy_pool/buddy_pool.i
+
+# target to preprocess a source file
+lib/cache_pool/buddy_pool/buddy_pool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cache_pool.dir/build.make CMakeFiles/cache_pool.dir/lib/cache_pool/buddy_pool/buddy_pool.cpp.i
+.PHONY : lib/cache_pool/buddy_pool/buddy_pool.cpp.i
+
+lib/cache_pool/buddy_pool/buddy_pool.s: lib/cache_pool/buddy_pool/buddy_pool.cpp.s
+.PHONY : lib/cache_pool/buddy_pool/buddy_pool.s
+
+# target to generate assembly for a file
+lib/cache_pool/buddy_pool/buddy_pool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cache_pool.dir/build.make CMakeFiles/cache_pool.dir/lib/cache_pool/buddy_pool/buddy_pool.cpp.s
+.PHONY : lib/cache_pool/buddy_pool/buddy_pool.cpp.s
+
+src/http_complete.o: src/http_complete.cpp.o
+.PHONY : src/http_complete.o
+
+# target to build an object file
+src/http_complete.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o
+.PHONY : src/http_complete.cpp.o
+
+src/http_complete.i: src/http_complete.cpp.i
+.PHONY : src/http_complete.i
+
+# target to preprocess a source file
+src/http_complete.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/src/http_complete.cpp.i
+.PHONY : src/http_complete.cpp.i
+
+src/http_complete.s: src/http_complete.cpp.s
+.PHONY : src/http_complete.s
+
+# target to generate assembly for a file
+src/http_complete.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/src/http_complete.cpp.s
+.PHONY : src/http_complete.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -198,6 +259,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/uring_server.o: src/uring_server.cpp.o
+.PHONY : src/uring_server.o
+
+# target to build an object file
+src/uring_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o
+.PHONY : src/uring_server.cpp.o
+
+src/uring_server.i: src/uring_server.cpp.i
+.PHONY : src/uring_server.i
+
+# target to preprocess a source file
+src/uring_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/src/uring_server.cpp.i
+.PHONY : src/uring_server.cpp.i
+
+src/uring_server.s: src/uring_server.cpp.s
+.PHONY : src/uring_server.s
+
+# target to generate assembly for a file
+src/uring_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/io_uring_server.dir/build.make CMakeFiles/io_uring_server.dir/src/uring_server.cpp.s
+.PHONY : src/uring_server.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,10 +295,20 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... cache_pool"
 	@echo "... io_uring_server"
+	@echo "... lib/cache_pool/buddy_pool/buddy_pool.o"
+	@echo "... lib/cache_pool/buddy_pool/buddy_pool.i"
+	@echo "... lib/cache_pool/buddy_pool/buddy_pool.s"
+	@echo "... src/http_complete.o"
+	@echo "... src/http_complete.i"
+	@echo "... src/http_complete.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/uring_server.o"
+	@echo "... src/uring_server.i"
+	@echo "... src/uring_server.s"
 .PHONY : help
 
 

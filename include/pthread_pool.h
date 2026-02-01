@@ -1,3 +1,4 @@
+#pragma once
 #include <atomic>
 #include <condition_variable>
 #include <functional>
@@ -7,6 +8,7 @@
 #include <queue>
 #include <thread>
 #include <type_traits>
+#include <uring_types.h>
 #include <vector>
 class ThreadPool {
 private:
@@ -16,12 +18,14 @@ private:
   std::mutex _queueMutex; // 队列互斥锁
   std::condition_variable _condition; // 条件变量
   std::atomic<bool> _stop;            // 设置停止状态
+  // std::shared_ptr<MainThreadTaskQueue> _main_queue; // 主线程任务队列
 
 public:
   // 构造函数，创建指定数量的工作线程
   explicit ThreadPool(
       size_t threadCount = std::thread::
-          hardware_concurrency()) // 静态函数获取当前系统cpu逻辑核心数
+          hardware_concurrency() // 静态函数获取当前系统cpu逻辑核心数
+      )
       : _stop(false) {
 
     if (threadCount == 0) {
@@ -47,8 +51,8 @@ public:
             // 取出一个任务
             task = std::move(this->_tasks.front());
             this->_tasks.pop();
-            std::cout << "线程 " << std::this_thread::get_id() << " 执行任务"
-                      << std::endl;
+            std::cout << "线程 " << std::this_thread::get_id()
+                      << " 开始执行任务" << std::endl;
           }
           // 执行任务
           task();
@@ -85,6 +89,41 @@ public:
     _condition.notify_one();
     return result;
   }
+
+  // 提交带回调的任务到线程池
+  template <typename F, typename... Args>
+  auto
+  enqueue_with_callback(F &&f, UringConnectionInfo *conn,
+                        std::function<void(UringConnectionInfo *)> callback,
+                        Args &&...args) -> std::future<void> {
+
+    auto task = std::make_shared<std::packaged_task<void()>>(
+        [f = std::forward<F>(f), conn, callback, args...]() mutable {
+          // 执行任务
+          std::invoke(std::forward<F>(f), std::forward<Args>(args)...);
+
+          // 任务完成后，直接调用回调函数，避免通过主线程队列，
+          if (callback) {
+            callback(conn);
+          }
+        });
+
+    std::future<void> result = task->get_future();
+    {
+      std::unique_lock<std::mutex> lock(_queueMutex);
+      if (_stop) {
+        throw std::runtime_error("enqueue on stopped ThreadPool");
+      }
+      _tasks.emplace([task]() { (*task)(); });
+    }
+    _condition.notify_one();
+    return result;
+  }
+
+  // // 设置主线程任务队列，设置这个回调太慢了（运行速度）
+  // void set_main_queue(std::shared_ptr<MainThreadTaskQueue> main_queue) {
+  //   _main_queue = main_queue;
+  // }
   // 获取当前等待执行的任务数量
   size_t pendingTasks() const {
     return _tasks

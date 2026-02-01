@@ -83,21 +83,55 @@ CMakeFiles/io_uring_server.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/io_uring_server.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rui/share/warehouse/1精匠/webserver/io_uring/src/main.cpp -o CMakeFiles/io_uring_server.dir/src/main.cpp.s
 
+CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o: CMakeFiles/io_uring_server.dir/flags.make
+CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o: ../src/uring_server.cpp
+CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o: CMakeFiles/io_uring_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o -MF CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o.d -o CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o -c /home/rui/share/warehouse/1精匠/webserver/io_uring/src/uring_server.cpp
+
+CMakeFiles/io_uring_server.dir/src/uring_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/io_uring_server.dir/src/uring_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rui/share/warehouse/1精匠/webserver/io_uring/src/uring_server.cpp > CMakeFiles/io_uring_server.dir/src/uring_server.cpp.i
+
+CMakeFiles/io_uring_server.dir/src/uring_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/io_uring_server.dir/src/uring_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rui/share/warehouse/1精匠/webserver/io_uring/src/uring_server.cpp -o CMakeFiles/io_uring_server.dir/src/uring_server.cpp.s
+
+CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o: CMakeFiles/io_uring_server.dir/flags.make
+CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o: ../src/http_complete.cpp
+CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o: CMakeFiles/io_uring_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o -MF CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o.d -o CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o -c /home/rui/share/warehouse/1精匠/webserver/io_uring/src/http_complete.cpp
+
+CMakeFiles/io_uring_server.dir/src/http_complete.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/io_uring_server.dir/src/http_complete.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rui/share/warehouse/1精匠/webserver/io_uring/src/http_complete.cpp > CMakeFiles/io_uring_server.dir/src/http_complete.cpp.i
+
+CMakeFiles/io_uring_server.dir/src/http_complete.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/io_uring_server.dir/src/http_complete.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rui/share/warehouse/1精匠/webserver/io_uring/src/http_complete.cpp -o CMakeFiles/io_uring_server.dir/src/http_complete.cpp.s
+
 # Object files for target io_uring_server
 io_uring_server_OBJECTS = \
-"CMakeFiles/io_uring_server.dir/src/main.cpp.o"
+"CMakeFiles/io_uring_server.dir/src/main.cpp.o" \
+"CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o" \
+"CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o"
 
 # External object files for target io_uring_server
 io_uring_server_EXTERNAL_OBJECTS =
 
-io_uring_server: CMakeFiles/io_uring_server.dir/src/main.cpp.o
-io_uring_server: CMakeFiles/io_uring_server.dir/build.make
-io_uring_server: CMakeFiles/io_uring_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable io_uring_server"
+bin/io_uring_server: CMakeFiles/io_uring_server.dir/src/main.cpp.o
+bin/io_uring_server: CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o
+bin/io_uring_server: CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o
+bin/io_uring_server: CMakeFiles/io_uring_server.dir/build.make
+bin/io_uring_server: lib/libcache_pool.a
+bin/io_uring_server: /usr/lib/x86_64-linux-gnu/liburing.so
+bin/io_uring_server: CMakeFiles/io_uring_server.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rui/share/warehouse/1精匠/webserver/io_uring/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable bin/io_uring_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/io_uring_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/io_uring_server.dir/build: io_uring_server
+CMakeFiles/io_uring_server.dir/build: bin/io_uring_server
 .PHONY : CMakeFiles/io_uring_server.dir/build
 
 CMakeFiles/io_uring_server.dir/clean:

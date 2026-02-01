@@ -1,0 +1,4 @@
+/home/rui/share/warehouse/1精匠/webserver/io_uring/lib/cache_pool/buddy_pool/build/CMakeFiles/buddy_pool_obj.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/lib/cache_pool/buddy_pool/build/CMakeFiles/buddy_pool_static.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/lib/cache_pool/buddy_pool/build/CMakeFiles/edit_cache.dir
+/home/rui/share/warehouse/1精匠/webserver/io_uring/lib/cache_pool/buddy_pool/build/CMakeFiles/rebuild_cache.dir

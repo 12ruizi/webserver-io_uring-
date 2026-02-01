@@ -1,0 +1,2 @@
+/usr/bin/ar qc libslab_pool_static.a CMakeFiles/slab_pool_obj.dir/slab_pool.cpp.o
+/usr/bin/ranlib libslab_pool_static.a

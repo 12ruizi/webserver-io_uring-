@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.10)
+project(cache_pool VERSION 1.0.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQIRED ON)
+target_compile_options(cache_pool_options INTERFACE
+-wall
+-wextra
+-g
+-pthread)
+add_subdirectory(buddy_pool)
+add_subdirectory(buddy_pool)
+
+#创建聚合静态库
+add_library(cache_pool STATIC
+ $<TATGET_OBJECTS:buddy_pool_obj>
+$<TATGET_OBJECTS:slab_pool_obj>
+
+#设置包含目录
+target_include_directories(cache_pool PUBLIC
+${CMKAE_CURRENT_SOURCE_DIR}
+${CMKAE_SOURCE_DIR}/include}
+)
+#链接依赖
+target_link_libraries(cache_pool PRIVATE pthread)
+
+
+#安装配置
+install(TARGETS cache_pool
+archive destination lib
+library destination lib
+runtime destination bin
+)
+install(directory ${CMAKE_CURRNET_SOURCE_DIR}
+destination include/cache_pool
+FILES_MATCHING PATTERN "*.h"
+)
+message(STATUS "缓存模块配置完毕")

@@ -1,0 +1,70 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-bcc7a3c084c6d0ffa96e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "io_uring_server",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "cache_pool::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cache_pool-Debug-6336e7ac8966cc32df6f.json",
+					"name" : "cache_pool",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "io_uring_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-io_uring_server-Debug-5610831bb0336ec4e664.json",
+					"name" : "io_uring_server",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/rui/share/warehouse/1\u7cbe\u5320/webserver/io_uring/build",
+		"source" : "/home/rui/share/warehouse/1\u7cbe\u5320/webserver/io_uring"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

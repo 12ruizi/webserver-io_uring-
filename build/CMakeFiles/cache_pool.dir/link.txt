@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libcache_pool.a CMakeFiles/cache_pool.dir/lib/cache_pool/buddy_pool/buddy_pool.cpp.o
+/usr/bin/ranlib lib/libcache_pool.a

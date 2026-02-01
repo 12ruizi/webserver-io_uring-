@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/io_uring_server.dir/src/main.cpp.o -o io_uring_server  -lpthread -luring -lstdc++fs 
+/usr/bin/c++  -Wall -Wextra -Wpedantic -g -O0 -D_GNU_SOURCE -pthread -g CMakeFiles/io_uring_server.dir/src/main.cpp.o CMakeFiles/io_uring_server.dir/src/uring_server.cpp.o CMakeFiles/io_uring_server.dir/src/http_complete.cpp.o -o bin/io_uring_server  lib/libcache_pool.a -lpthread /usr/lib/x86_64-linux-gnu/liburing.so 

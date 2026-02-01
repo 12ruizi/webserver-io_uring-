@@ -1,58 +1,116 @@
-#include "funC.h"
 #pragma once
 #include "http_complete.h"
-#include <cstdio>
-// worker类 负责处理具体的工作  ，肯定要解析报文处理是哪一种任务（分类 ）
-class TaskHandler {
+#include <functional>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <type_traits>
+#include <vector>
+
+// 简洁的任务处理器接口 - 模板化设计
+template <typename ContextType> class TaskHandler {
 public:
   virtual ~TaskHandler() = default;
-  virtual bool can_handle(Info_net_s *info) = 0;
-  virtual void handle(Info_net_s *info) = 0;
-  virtual const char *get_name() const = 0; // 添加const限定符
+
+  // 检查是否可以处理该上下文
+  virtual bool can_handle(ContextType *context) = 0;
+  //报文完整否
+  virtual bool is_parse_complete(ContextType *context) = 0;
+  // 处理任务
+  virtual void handle(ContextType *context) = 0;
+
+  // 获取处理器名称
+  virtual TaskType get_name() const = 0;
 };
 
-class HttpTaskHandler : public TaskHandler { // 修正类名拼写
+// 默认的HTTP任务处理器
+template <typename ContextType>
+class DefaultHttpHandler : public TaskHandler<ContextType> {
 public:
-  bool can_handle(Info_net_s *info) override {
-    // 使用静态方法检查HTTP报文完整性
-    return HttpTask::is_http_parse_complete(info) > 0;
+  bool can_handle(ContextType *context) override {
+    // 检查是否为HTTP任务
+    return HttpTask::is_http_task(context);
+  }
+  bool is_parse_complete(ContextType *context) override {
+    return HttpTask::is_http_parse_complete(context);
   }
 
-  void handle(Info_net_s *info) override {
-    // 直接调用静态方法，无需创建对象
-    HttpTask::handle_http_request(info);
+  void handle(ContextType *context) override {
+    HttpTask task;
+    task.handle_message(context);
   }
 
-  const char *get_name() const override { return "HTTP"; }
+  TaskType get_name() const override { return TaskType::HTTP; }
 };
 
-// 聊天室任务处理器
-class ChatTaskHandler : public TaskHandler {
+// 默认的文件处理器
+template <typename ContextType>
+class DefaultFileHandler : public TaskHandler<ContextType> {
 public:
-  bool can_handle(Info_net_s *info) override {
-    // 检查是否是聊天室协议
-    // 实现聊天室协议检测逻辑
-    return false; // 待实现
+  bool can_handle(ContextType *context) override {
+    // 简单的文件传输协议检测
+    size_t readable = context->read_buffer.get_readable_size();
+    if (readable < 8)
+      return false;
+
+    char *data = context->read_buffer.get_read_head();
+    // 检测文件传输协议标识
+    return (data[0] == 'F' && data[1] == 'I' && data[2] == 'L' &&
+            data[3] == 'E');
   }
 
-  void handle(Info_net_s *info) override {
-    // 实现聊天室处理逻辑
+  bool is_parse_complete(ContextType *context) override {
+    // 简单的文件协议完整性检查
+    size_t readable = context->read_buffer.get_readable_size();
+    if (readable < 12)
+      return false; // 需要至少12字节的协议头
+
+    char *data = context->read_buffer.get_read_head();
+    // 检查文件协议结束标记
+    return (data[readable - 1] == '\n' && data[readable - 2] == '\r');
   }
 
-  const char *get_name() const override { return "CHAT"; }
+  void handle(ContextType *context) override {
+    std::cout << "处理文件传输请求" << std::endl;
+  }
+
+  TaskType get_name() const override { return TaskType::FILE; }
 };
 
-// 文件传输任务处理器
-class FileTransferHandler : public TaskHandler {
+// 默认的聊天室处理器
+template <typename ContextType>
+class DefaultChatHandler : public TaskHandler<ContextType> {
 public:
-  bool can_handle(Info_net_s *info) override {
-    // 检查是否是文件传输协议
-    return false; // 待实现
+  bool can_handle(ContextType *context) override {
+    // 简单的聊天室协议检测
+    size_t readable = context->read_buffer.get_readable_size();
+    if (readable < 6)
+      return false;
+
+    char *data = context->read_buffer.get_read_head();
+    // 检测聊天室协议标识
+    return (data[0] == 'C' && data[1] == 'H' && data[2] == 'A' &&
+            data[3] == 'T' && data[4] == ':' && data[5] == ' ');
   }
 
-  void handle(Info_net_s *info) override {
-    // 实现大文件传输逻辑
+  bool is_parse_complete(ContextType *context) override {
+    // 简单的聊天协议完整性检查
+    size_t readable = context->read_buffer.get_readable_size();
+    if (readable < 1)
+      return false;
+
+    char *data = context->read_buffer.get_read_head();
+    // 检查消息结束符
+    for (size_t i = 0; i < readable; ++i) {
+      if (data[i] == '\n')
+        return true;
+    }
+    return false;
   }
 
-  const char *get_name() const override { return "FILE"; }
+  void handle(ContextType *context) override {
+    std::cout << "处理聊天室请求" << std::endl;
+  }
+
+  TaskType get_name() const override { return TaskType::CHAT; }
 };
